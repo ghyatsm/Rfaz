@@ -19,12 +19,12 @@ class CreatePesananTable extends Migration
             $table->foreignId('pelanggan_id');
             $table->foreignId('benang_id');
             $table->string('berat_bahan');
-            $table->date('tanggal_masuk');
+            $table->date('tanggal_mulai')->nullable()->default(null);
             $table->date('tanggal_selesai');
             $table->bigInteger('harga_awal');
-            $table->bigInteger('harga_final');
-            $table->string('status');
-            $table->string('isLunas');
+            $table->bigInteger('harga_final')->nullable()->default(null);
+            $table->string('status')->nullable()->default(null);
+            $table->string('isLunas')->nullable()->default(null);
             $table->timestamps();
         });
     }
