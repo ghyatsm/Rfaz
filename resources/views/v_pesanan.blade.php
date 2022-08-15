@@ -82,9 +82,9 @@
     </thead>
     <tbody>
         <?php $no = 1; ?>
-        @foreach ($pesanan as $data)
+        @foreach ($pesanan as $index => $data)
         <tr>
-            <td> {{ $no++ }} </td>
+            <td> {{ $index + $pesanan->firstItem() }} </td>
             <td> {{ $data->kode_pesanan }} </td>
             <td style="text-align: left;"> {{ $data->profilmodel->nama_perusahaan }}</td>
             <td style="text-align: left;"> {{ $data->profilmodel->nama_kontak }} </td>
@@ -113,5 +113,6 @@
     </tbody>
 </table>
 
+{{ $pesanan->links() }}
 
 @endsection

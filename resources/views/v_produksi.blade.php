@@ -77,9 +77,9 @@
 
     <tbody>
         <?php $no = 1; ?>
-        @foreach ($produksi as $data)
+        @foreach ($produksi as $index => $data)
         <tr>
-            <td> {{ $no++ }} </td>
+            <td> {{ $index + $produksi->firstItem()  }} </td>
             <td> {{ $data->kode_pesanan }} </td>
             <td style="text-align:left;"> {{ $data->pesananmodel->profilmodel->nama_perusahaan  }}</td>
             <td style="text-align:left;"> {{ $data->pesananmodel->benangmodel->nama_benang }}</td>
@@ -118,7 +118,7 @@
     </tbody>
 </table>
 
-
+{{ $produksi->links() }}
 @endsection
 
 <script>

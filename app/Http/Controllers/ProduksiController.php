@@ -20,6 +20,7 @@ class ProduksiController extends Controller
     public function index()
     {
         $produksi = ProduksiModel::with('pesananmodel')->get();
+        $produksi = ProduksiModel::paginate(10);
         return view('v_produksi', compact('produksi'));
     }
 
