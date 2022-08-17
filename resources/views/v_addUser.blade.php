@@ -3,7 +3,7 @@
 @section('title', 'Tambah User')
 @section('content')
 
-<form action="/user/insert" method="POST" enctype="multipart/form-data" onsubmit="return(validate());">
+<form action="/user/insert" method="POST" enctype="multipart/form-data" onsubmit="return(validasi());">
 
     @csrf
     <!-- {{ csrf_field() }} -->
@@ -76,7 +76,7 @@
 </form>
 
 <script>
-    function validate() {
+    function validasi() {
 
         pwd1 = document.getElementById("password").value;
         pwd2 = document.getElementById("password2").value;
