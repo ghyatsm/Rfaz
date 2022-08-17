@@ -20,8 +20,8 @@ class PesananController extends Controller
     public function index()
     {
         $pesanan1 = PesananModel::with('profilmodel', 'benangmodel')->get(); // langkah sorting
-        $pesanan = $pesanan1->sortByDesc('id');   
-        $pesanan = PesananModel::paginate(10);                         // langkah sorting
+        $pesanan = $pesanan1->sortByDesc('id');
+        $pesanan = PesananModel::Paginate(2);                        // langkah sorting
 
         return view('v_pesanan', compact('pesanan'));
     }
@@ -135,7 +135,7 @@ class PesananController extends Controller
         $pesanan = PesananModel::with('profilmodel', 'benangmodel')
             ->where('kode_pesanan', 'like', '%' . request()->kode_pesanan . '%')
             ->where('status', 'like', '%' . request()->status . '%')
-            ->get();
+            ->paginate(100);
 
         return view('v_pesanan', compact('pesanan'));
     }

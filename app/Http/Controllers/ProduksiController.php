@@ -20,7 +20,7 @@ class ProduksiController extends Controller
     public function index()
     {
         $produksi = ProduksiModel::with('pesananmodel')->get();
-        $produksi = ProduksiModel::paginate(10);
+        $produksi = ProduksiModel::paginate(2);
         return view('v_produksi', compact('produksi'));
     }
 
@@ -118,7 +118,7 @@ class ProduksiController extends Controller
     {
         $produksi = ProduksiModel::with('pesananmodel')
             ->where('kode_pesanan', 'like', '%' . request()->kode_pesanan . '%')
-            ->get();
+            ->paginate(100);
 
         return view('v_produksi', compact('produksi'));
     }

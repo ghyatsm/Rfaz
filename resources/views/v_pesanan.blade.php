@@ -65,7 +65,7 @@
             <th colspan=2 style="text-align: center; vertical-align: middle;">Pemesan</th>
             <th colspan=2>Benang</th>
             <th colspan=2>Tanggal Rencana</th>
-            <th colspan=2>Harga</th>
+            <th colspan=2>Harga Jasa</th>
             <th style="text-align: center; vertical-align: middle;" width="100" rowspan=2>Status</th>
             <th style="text-align: center; vertical-align: middle;" width="130" rowspan=2>Action</th>
         </tr>
@@ -112,7 +112,6 @@
         @endforeach
     </tbody>
 </table>
-
 {{ $pesanan->links() }}
 
 @endsection
