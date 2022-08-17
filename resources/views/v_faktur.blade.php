@@ -113,7 +113,7 @@
     <table border="0" width="100%">
         <tr>
             <td width="30%" style="border:none">
-                <img style="width: 145px;height: 145px;padding-top: 30px;" src="foto_bahan/rfaz_logo.jpg">
+                <img style="width: 145px;height: 145px;padding-top: 30px;" src="/foto_bahan/rfaz_logo.jpg">
             </td>
             <td style="border:none">
                 <h1 class="text-center m-0 p-0>Faktur">Faktur Pembayaran</h1>
