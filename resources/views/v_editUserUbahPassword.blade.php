@@ -7,7 +7,7 @@ if (!isset($_SESSION["username"])) {
 @extends('layout.v_template')
 @section('title', 'Ubah Password')
 @section('content')
-<form action="/user/updatepassword/{{ $_SESSION['userid'] }}" method="POST" enctype="multipart/form-data" onsubmit="return(validasi());">
+<form action="/user/updatepassword/{{ $_SESSION['userid'] }}" method="POST" enctype="multipart/form-data" onsubmit="return(validate());">
     @csrf
 
     <div class="content">
@@ -63,7 +63,7 @@ if (!isset($_SESSION["username"])) {
 </form>
 
 <script>
-    function validasi() {
+    function validate() {
 
         pwd1 = document.getElementById("password").value;
         pwd2 = document.getElementById("password2").value;

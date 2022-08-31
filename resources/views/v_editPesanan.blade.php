@@ -107,19 +107,6 @@
             </div>
         </div>
 
-        <!--         <div class="form-row">
-            <div class="form-group col-md-2">
-                <label>Harga Final</label>
-                <input name="harga_final" class="form-control @error('harga_final') is-invalid @enderror" value="{{ $pesanan->harga_final }}">
-                <div class="invalid-feedback">
-                    @error('harga_final')
-                    {{ $message }}
-                    @enderror
-                </div>
-            </div>
-        </div>
- -->
-
         <br>
 
         <div class="col-sm 12">

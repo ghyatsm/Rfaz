@@ -108,6 +108,7 @@
                     @csrf
                     <input type="hidden" name="harga_benang" value="{{ $data->pesananmodel->benangmodel->harga_benang }}">
                     <input type="hidden" name="jumlah_produk" value="{{ $data->jumlah_produk }}">
+                    <input type="hidden" name="produksi_id" value="{{ $data->id }}">
                     <button {{ $set_disable }} name="status" value="{{ $set_status }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">{{ $set_status }}</button>
                 </form>
 

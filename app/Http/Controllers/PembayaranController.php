@@ -17,7 +17,6 @@ class PembayaranController extends Controller
     public function index()
     {
         $pesanan = PesananModel::with('profilmodel', 'benangmodel')->get();
-        $pesanan = PesananModel::paginate(10);
         return view('v_pembayaran', compact('pesanan'));
     }
 

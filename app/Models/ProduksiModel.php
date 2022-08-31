@@ -45,4 +45,18 @@ class ProduksiModel extends Model
             ->where('id', $id)
             ->delete();
     }
+
+    public function getTglSelesaiAttribute()
+    {
+        if ($this->attributes['tgl_selesai'] != null) {
+            return Carbon::parse($this->attributes['tgl_selesai'])->isoFormat('DD MMM Y');
+        }
+    }
+
+    public function getTglMulaiAttribute()
+    {
+        if ($this->attributes['tgl_mulai'] != null) {
+            return Carbon::parse($this->attributes['tgl_mulai'])->isoFormat('DD MMM Y');
+        }
+    }
 }

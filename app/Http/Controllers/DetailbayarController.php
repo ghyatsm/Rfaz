@@ -43,7 +43,7 @@ class DetailbayarController extends Controller
         $data = [
             'pesanan' => $pesanan_id,
         ];
-        return view('v_addDetailbayar', $data);
+        return view('v_adddetailbayar', $data);
     }
 
     public function delete($id)
@@ -106,5 +106,45 @@ class DetailbayarController extends Controller
         ];
         $this->DetailbayarModel->updateData($id, $data);
         return redirect()->route('detailbayar', request()->pesanan_id)->with('pesan', 'Data Berhasil Terupdate');
+    }
+
+    public function upload($id)
+    {
+        $data = [
+            'detailbayar' => $this->DetailbayarModel->detailData($id),
+        ];
+        return view('v_uploadkuitansi', $data);
+    }
+
+    public function save($id)
+    {
+
+        $this->PesananModel = new PesananModel();
+        $pesanan = $this->PesananModel->detailData(request()->pesanan_id);
+
+        $arr = explode(".", basename($_FILES["fileToUpload"]["name"]));
+        $target_dir = "kuitansi/";
+        if ($arr[0] != "") {
+
+            $file_name = "kuitansi_" . $pesanan->kode_pesanan . "_" . $id . ".jpg";
+            $target_file = $target_dir . $file_name;
+            $FileType = pathinfo($target_file, PATHINFO_EXTENSION);
+
+            if (!file_exists($target_dir)) {
+                mkdir($target_dir, 0777, true);
+            }
+
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+
+                $data = [
+                    'buktibayar' => $file_name,
+                    'updated_at' => now()
+                ];
+                $this->DetailbayarModel->updateData($id, $data);
+                return redirect()->route('detailbayar', request()->pesanan_id)->with('pesan', 'Bukti bayar berhasil diupload');
+            } else {
+                return redirect()->route('detailbayar', request()->pesanan_id)->with('pesan', 'Bukti bayar gagal diupload');
+            }
+        }
     }
 }

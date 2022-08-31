@@ -11,6 +11,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProduksiController;
+use App\Http\Controllers\MesinController;
+use App\Http\Controllers\MesinTrxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,8 +83,19 @@ Route::post('/detailbayar/insert', [DetailBayarController::class, 'insert']);
 Route::delete('/detailbayar/delete/{id}', [DetailBayarController::class, 'delete']);
 Route::get('/detailbayar/edit/{id}', [DetailBayarController::class, 'edit']);
 Route::post('/detailbayar/update/{id}', [DetailBayarController::class, 'update']);
+Route::get('/detailbayar/upload/{id}', [DetailBayarController::class, 'upload']);
+Route::post('/detailbayar/upload/save/{id}', [DetailBayarController::class, 'save']);
 
 Route::get('generate-laporan-html', array('as' => 'generate.laporan.html', 'uses' => 'PDFController@generateLaporanHTML'));
 Route::get('generate-laporan-pdf', array('as' => 'generate.laporan.pdf', 'uses' => 'PDFController@generateLaporanPDF'));
 Route::get('generate-invoice-html/{id}', array('as' => 'generate.invoice.html', 'uses' => 'PDFController@generateInvoiceHTML'));
 Route::get('generate-invoice-pdf/{id}', array('as' => 'generate.invoice.pdf', 'uses' => 'PDFController@generateInvoicePDF'));
+
+Route::get('/mesin', [MesinController::class, 'index'])->name('mesin');
+Route::get('/mesin/add', [MesinController::class, 'add']);
+Route::post('/mesin/insert', [MesinController::class, 'insert']);
+Route::get('/mesin/edit/{id}', [MesinController::class, 'edit']);
+Route::post('/mesin/update/{id}', [MesinController::class, 'update']);
+Route::delete('/mesin/delete/{id}', [MesinController::class, 'delete']);
+
+Route::get('/jadwalmesin', [MesinTrxController::class, 'index'])->name('jadwalmesin');

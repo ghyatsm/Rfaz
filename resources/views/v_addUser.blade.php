@@ -3,7 +3,13 @@
 @section('title', 'Tambah User')
 @section('content')
 
-<form action="/user/insert" method="POST" enctype="multipart/form-data" onsubmit="return(validasi());">
+<script>
+    function validasi() {
+        alert("Ada kesalahan : password");
+    }
+</script>
+
+<form action="/user/insert" method="POST" enctype="multipart/form-data" onsubmit="validasi()">
 
     @csrf
     <!-- {{ csrf_field() }} -->
@@ -74,21 +80,4 @@
     </div>
 
 </form>
-
-<script>
-    function validasi() {
-
-        pwd1 = document.getElementById("password").value;
-        pwd2 = document.getElementById("password2").value;
-
-        if (pwd1 != pwd2) {
-            alert("Ada kesalahan : password tidak sama");
-            return false;
-        } else {
-            return (true);
-        }
-
-    }
-</script>
-
 @endsection

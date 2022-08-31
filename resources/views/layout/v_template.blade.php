@@ -12,6 +12,9 @@ if (!isset($_SESSION["username"])) {
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RFAZ Textile | @yield('title')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="{{asset('template')}}/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -46,7 +49,9 @@ if (!isset($_SESSION["username"])) {
 
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
-            
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                        <i class="fas fa-search"></i>
                     </a>
                     <div class="navbar-search-block">
                         <form class="form-inline">
@@ -54,10 +59,10 @@ if (!isset($_SESSION["username"])) {
                                 <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                                 <input class="form-control form-control-navbar" placeholder="Search">
                                 <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit" onclick="return(validate('a'));">
+                                    <button class="btn btn-navbar" type="submit">
                                         <i class="fas fa-search"></i>
                                     </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search" onclick="return(validate('b'));">
+                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
                                         <i class="fas fa-times"></i>
                                     </button>
                                 </div>
@@ -76,10 +81,10 @@ if (!isset($_SESSION["username"])) {
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <!-- <a href="../../index3.html" class="brand-link">
+            <a href="../../index3.html" class="brand-link">
                 <img src="{{asset('template')}}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">RFAZ Textile</span>
-            </a> -->
+            </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
@@ -146,20 +151,4 @@ if (!isset($_SESSION["username"])) {
 
 </html>
 
-<script>
-    function validate(a) {
-
-        alert(a);
-        return false;
-        /*         pwd1 = document.getElementById("password").value;
-                pwd2 = document.getElementById("password2").value;
-
-                if (pwd1 != pwd2) {
-                    alert("Ada kesalahan : password tidak sama");
-                    return false;
-                } else {
-                    return (true);
-                } */
-
-    }
 </script>

@@ -21,7 +21,7 @@ class PesananController extends Controller
     {
         $pesanan1 = PesananModel::with('profilmodel', 'benangmodel')->get(); // langkah sorting
         $pesanan = $pesanan1->sortByDesc('id');
-        $pesanan = PesananModel::Paginate(2);                        // langkah sorting
+        $pesanan = PesananModel::Paginate(10);                        // langkah sorting
 
         return view('v_pesanan', compact('pesanan'));
     }

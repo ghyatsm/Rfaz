@@ -26,9 +26,9 @@ class PesananModel extends Model
         return Carbon::parse($this->attributes['tanggal_selesai'])->isoFormat('DD MMM Y');
     }
 
-    public function getTanggalMasukAttribute()
+    public function getTanggalMUlaiAttribute()
     {
-        return Carbon::parse($this->attributes['tanggal_masuk'])->isoFormat('DD MMM Y');
+        return Carbon::parse($this->attributes['tanggal_mulai'])->isoFormat('DD MMM Y');
     }
 
     public function allData()

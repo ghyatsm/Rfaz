@@ -15,7 +15,7 @@ if (!isset($_SESSION["username"])) {
         if ($_SESSION["role"] == 'admin') {
 
             echo "<li class=nav-item>";
-            echo "    <a class='nav-link'> <p> Pemasaran</p></a>";
+            echo "    <a class='nav-link'> <p> Modul Pemasaran</p></a>";
             echo "</li>";
 
             echo "<li class=nav-item>";
@@ -27,7 +27,7 @@ if (!isset($_SESSION["username"])) {
             echo "</li>";
 
             echo "<li class=nav-item>";
-            echo "    <a class='nav-link'> <p> Produksi</p></a>";
+            echo "    <a class='nav-link'> <p> Modul Produksi</p></a>";
             echo "</li>";
 
             echo "<li class=nav-item>";
@@ -35,11 +35,19 @@ if (!isset($_SESSION["username"])) {
             echo "</li>";
 
             echo "<li class=nav-item>";
+            echo "    <a href='/jadwalmesin' class='nav-link'>&nbsp;&nbsp;&nbsp; <i class='fa fa-book'></i><p> Jadwal Mesin</p></a>";
+            echo "</li>";
+
+            echo "<li class=nav-item>";
             echo "    <a href='/benang' class='nav-link'>&nbsp;&nbsp;&nbsp; <i class='fa fa-book'></i><p> Benang</p></a>";
             echo "</li>";
 
             echo "<li class=nav-item>";
-            echo "    <a class='nav-link'> <p> Keuangan</p></a>";
+            echo "    <a href='/mesin' class='nav-link'>&nbsp;&nbsp;&nbsp; <i class='fa fa-book'></i><p> Mesin</p></a>";
+            echo "</li>";
+
+            echo "<li class=nav-item>";
+            echo "    <a class='nav-link'> <p> Modul Keuangan</p></a>";
             echo "</li>";
 
             echo "<li class=nav-item>";
@@ -47,14 +55,14 @@ if (!isset($_SESSION["username"])) {
             echo "</li>";
 
             echo "<li class=nav-item>";
-            echo "    <a class='nav-link'> <p> Pengguna</p></a>";
+            echo "    <a class='nav-link'> <p> Modul Pengguna</p></a>";
             echo "</li>";
             echo "<li class=nav-item>";
             echo "    <a href='/user' class='nav-link'>&nbsp;&nbsp;&nbsp; <i class='fa fa-book'></i><p> User</p></a>";
             echo "</li>";
 
             echo "<li class=nav-item>";
-            echo "    <a class='nav-link'> <p> Manajemen</p></a>";
+            echo "    <a class='nav-link'> <p> Modul Manajemen</p></a>";
             echo "</li>";
 
             echo "<li class=nav-item>";
@@ -63,13 +71,30 @@ if (!isset($_SESSION["username"])) {
         } elseif ($_SESSION["role"] == 'produksi') {
 
             echo "<li class=nav-item>";
-            echo "    <a href='/produksi' class='nav-link'> <i class='fa fa-book'></i><p> Produksi</p></a>";
+            echo "    <a class='nav-link'> <p> Modul Produksi</p></a>";
             echo "</li>";
 
             echo "<li class=nav-item>";
-            echo "    <a href='/benang' class='nav-link'> <i class='fa fa-book'></i><p> Benang</p></a>";
+            echo "    <a href='/produksi' class='nav-link'>&nbsp;&nbsp;&nbsp;  <i class='fa fa-book'></i><p> Produksi</p></a>";
+            echo "</li>";
+
+            echo "<li class=nav-item>";
+            echo "    <a href='/jadwalmesin' class='nav-link'>&nbsp;&nbsp;&nbsp; <i class='fa fa-book'></i><p> Jadwal Mesin</p></a>";
+            echo "</li>";
+
+            echo "<li class=nav-item>";
+            echo "    <a href='/mesin' class='nav-link'>&nbsp;&nbsp;&nbsp; <i class='fa fa-book'></i><p> Mesin</p></a>";
+            echo "</li>";
+
+            echo "<li class=nav-item>";
+            echo "    <a href='/benang' class='nav-link'>&nbsp;&nbsp;&nbsp;  <i class='fa fa-book'></i><p> Benang</p></a>";
             echo "</li>";
         } elseif ($_SESSION["role"] == 'penjualan') {
+
+            echo "<li class=nav-item>";
+            echo "    <a class='nav-link'> <p> Modul Pemasaran</p></a>";
+            echo "</li>";
+
             echo "<li class=nav-item>";
             echo "    <a href='/pesanan' class='nav-link'> <i class='fa fa-book'></i><p> Pesanan</p></a>";
             echo "</li>";
@@ -77,16 +102,20 @@ if (!isset($_SESSION["username"])) {
             echo "    <a href='/profil' class='nav-link'> <i class='fa fa-book'></i><p> Pelanggan</p></a>";
             echo "</li>";
         } elseif ($_SESSION["role"] == 'manajemen') {
+
+            echo "<li class=nav-item>";
+            echo "    <a class='nav-link'> <p> Modul Manajemen</p></a>";
+            echo "</li>";
+
             echo "<li class=nav-item>";
             echo "    <i class='fa fa-book'></i><p> Laporan Pemesanan Tahunan</p></a>";
             echo "</li>";
-            echo "<li class=nav-item>";
-            echo "    <a href='/laporan/preview' class='nav-link'> <i class='fa fa-book'></i><p> Preview</p></a>";
-            echo "</li>";
-            echo "<li class=nav-item>";
-            echo "    <a href='/laporan/download' class='nav-link'> <i class='fa fa-book'></i><p> Download</p></a>";
-            echo "</li>";
         } else {
+
+            echo "<li class=nav-item>";
+            echo "    <a class='nav-link'> <p> Modul Keuangan</p></a>";
+            echo "</li>";
+
             echo "<li class=nav-item>";
             echo "    <a href='/pembayaran' class='nav-link'> <i class='fa fa-book'></i><p> Pembayaran</p></a>";
             echo "</li>";

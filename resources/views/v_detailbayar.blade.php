@@ -49,18 +49,14 @@
             <th width="200">Kode Pesanan</th>
             <th width="30">:</th>
             <th> {{$pesanan->kode_pesanan}} </th>
-        </tr>
-        <tr>
-            <th width="200">Pemesan</th>
-            <th width="30">:</th>
-            <th> {{$pelanggan->nama_perusahaan}}</th>
-        </tr>
-        <tr>
             <th width="200">Harga Perkiraan</th>
             <th width="30">:</th>
             <th> {{ "Rp. " . number_format($pesanan->harga_awal)}} </th>
         </tr>
         <tr>
+            <th width="200">Pemesan</th>
+            <th width="30">:</th>
+            <th> {{$pelanggan->nama_perusahaan}}</th>
             <th width="200">Harga Final</th>
             <th width="30">:</th>
             <th> {{ "Rp. " . number_format($pesanan->harga_final)}} </th>
@@ -78,8 +74,9 @@
         <th width="130">Jumlah Bayar</th>
         <th width="130">Cara Bayar</th>
         <th width="130">Bank</th>
+        <th width="200">Bukti Bayar</th>
         <th>Keterangan</th>
-        <th width="130">Action</th>
+        <th width="200">Action</th>
     </tr>
 
     <tbody>
@@ -95,11 +92,17 @@
             <td style="text-align:right;"> {{ number_format($data->jumlah_bayar) }} </td>
             <td style="text-align:center;"> {{ $data->cara_bayar }} </td>
             <td style="text-align:center;"> {{ $data->bank }} </td>
+            <td style="text-align:center;"><a href="/kuitansi/{{ $data->buktibayar }}">{{ $data->buktibayar }}</td>
             <td style="text-align:left;"> {{ $data->keterangan }} </td>
             <td>
-                <!-- <a href="/pesanan/detail/{{ $data->id }}" class="btn btn-sm btn-success">Detail</a>  -->
+                <form id="form1" action="/detailbayar/upload/{{$data->id}}" method="GET" class="d-inline">
+                    @method('delete')
+                    @csrf
+                    <input type="hidden" value="{{ $pesanan->id }}">
+                    <button class="btn btn-sm btn-danger"> Upload </button>
+                </form>
                 <a href="/detailbayar/edit/{{ $data->id}}" class="btn btn-sm btn-warning">Edit</a>
-                <form action="/detailbayar/delete/{{$data->id}}" method="POST" class="d-inline">
+                <form id="form2" action="/detailbayar/delete/{{$data->id}}" method="POST" class="d-inline">
                     @method('delete')
                     @csrf
                     <button class="btn btn-sm btn-danger" onclick="return confirm('are you sure')"> Delete </button>
@@ -109,9 +112,11 @@
         </tr>
 
         @endforeach
+
         <tr>
-            <td></td>
+            <td colspan="7"></td>
         </tr>
+
         <tr>
             <td></td>
             <td>Total Bayar :</td>

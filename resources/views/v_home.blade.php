@@ -10,7 +10,7 @@ if (!isset($_SESSION["username"])) {
 
 @extends('layout.v_template')
 
-
+@section('title', 'Home' )
 @section('content')
 
 @if (session('pesan'))
@@ -22,8 +22,8 @@ if (!isset($_SESSION["username"])) {
 @endif
 
 <body>
-    <div style="width:100%;height:850px">
-        <img src="foto_bahan/rfazz.png" style="object-fit:fill;width:100%;height:100%;">
+    <div style="width:100%;height:600px;">
+        <img src="foto_bahan/home.png" style="object-fit:fill;width:100%;height:100%;">
         </img>
     </div>
 </body>

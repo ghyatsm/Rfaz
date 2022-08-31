@@ -9,7 +9,7 @@ use App\Models\MesinModel;
 use App\Models\MesinTrxModel;
 
 
-class ProduksiController extends Controller
+class MesinTrxController extends Controller
 {
     public function __construct()
     {
@@ -22,35 +22,54 @@ class ProduksiController extends Controller
 
     public function index()
     {
-        $produksi = ProduksiModel::with('pesananmodel')->get();
-        $produksi = ProduksiModel::paginate(10);
-        return view('v_produksi', compact('produksi'));
-    }
-
-    public function add()
-    {
-        $mesintrx = $this->MesinTrxModel
-            ->where('status', 'like', 'Produksi')
-            ->orwhere('status', 'like', 'Pemeliharaan')
-            ->get();
-
+        //$pesanan1 = PesananModel::with('profilmodel', 'benangmodel')->get(); // langkah sorting
         $mesin = $this->MesinModel
             ->where('status', 'like', 'aktif')
             ->get();
 
+        $jadwalmesin = $this->MesinTrxModel
+            ->where('status', 'like', 'Produksi')
+            ->orwhere('status', 'like', 'Pemeliharaan')
+            ->get();
+
+        $collection = collect();
+        $ada = false;
+        $kode_mesin = "";
+        $status = "";
+
         foreach ($mesin as $data) {
-            foreach ($mesintrx as $datatrx) {
-                if ($data->id == $mesintrx->mesin_id) {
-                } else {
-                    $result = [
-                        'mesin_id' => $data->id,
+            foreach ($jadwalmesin as $datatrx) {
+                if ($data->id == $datatrx->mesin_id) {
+                    $collection->add([
                         'kode_mesin' => $data->kode_mesin,
-                        'kecepatan' => $data->kecepatan,
-                    ];
+                        'tgl_mulai' => $datatrx->tgl_mulai,
+                        'tgl_selesai' =>  $datatrx->tgl_selesai,
+                        'status' =>  $datatrx->status
+                    ]);
+                    $ada = true;
                 }
             }
+            if (!$ada) {
+                $collection->add([
+                    'kode_mesin' => $data->kode_mesin,
+                    'tgl_mulai' => null,
+                    'tgl_selesai' =>  null,
+                    'status' =>  "Free"
+                ]);
+            }
+            $ada = false;
         }
-        return view('v_addProduksi', compact('result'));
+
+        return view('v_jadwalmesin', compact('collection'));
+    }
+
+    public function add()
+    {
+        $mesin = MesinModel::with('status')
+            ->where('status', 'like', 'aktif')
+            ->get();
+
+        return view('v_addProduksi', compact('mesin'));
     }
 
     public function delete($id)
@@ -87,45 +106,13 @@ class ProduksiController extends Controller
         if (!$this->ProduksiModel->detailData($id)) {
             abort(404);
         }
-        /*
-        Ambil data mesin dengan kondisi:
-        - status aktif
-        - tidak ada jadwal kecuali untuk produksi yg dipilih
-*/
-        $result = collect();
-        $mesin = $this->MesinModel->where('status', 'like', 'aktif')->get();
-        $jadwalmesin = $this->MesinTrxModel
-            ->where('status', 'like', 'Produksi')
-            ->where('produksi_id', '!=', $id)
-            ->orwhere('status', 'like', 'Pemeliharaan')
-            ->get();
-
-        $mesin_trx = $this->MesinTrxModel
-            ->where('status', 'like', 'Produksi')
-            ->where('produksi_id', '=', $id)
-            ->get();
-        //===== dapatkan mesin yg msh free ======    
-        $ada = false;
-        foreach ($mesin as $data) {
-            foreach ($jadwalmesin as $datatrx) {
-                if ($data->id == $datatrx->mesin_id) {
-                    $ada = true;
-                }
-            }
-            if (!$ada) {
-                $result->add([
-                    'mesin_id' => $data->id,
-                    'kode_mesin' => $data->kode_mesin,
-                    'kecepatan' => $data->kecepatan,
-                ]);
-            }
-            $ada = false;
-        }
-        //dd($mesin_trx);
         $data = [
             'produksi' => $this->ProduksiModel->detailData($id),
-            'mesin' => $result,
-            'mesin_trx' => $mesin_trx
+            'mesin' => $this->MesinModel->where('status', 'like', 'aktif')->get(),
+            'mesin_trx' => $this->MesinTrxModel
+                ->where('status', 'like', 'produksi')
+                ->where('produksi_id', '=', $id)
+                ->get()
         ];
         return view('v_editProduksi', $data);
     }
@@ -134,15 +121,8 @@ class ProduksiController extends Controller
     {
         //== Olah tbl_mesin
 
-        $mesin = $this->MesinModel
-            ->where('status', 'like', 'aktif')->get();
-
-        for ($i = 0; $i < $mesin->count(); $i++) {
-            if (isset(request()->mesin[$i])) {
-                $this->MesinTrxModel->deleteProduksi($id);
-            }
-        }
-
+        $this->MesinTrxModel->deleteProduksi($id);
+        $mesin = $this->MesinModel->where('status', 'like', 'aktif')->get();
         for ($i = 0; $i < $mesin->count(); $i++) {
             if (isset(request()->mesin[$i])) {
                 $data = [
@@ -150,7 +130,7 @@ class ProduksiController extends Controller
                     'mesin_id' => request()->mesin[$i],
                     'tgl_mulai' => request()->tgl_mulai,
                     'tgl_selesai' => request()->tgl_selesai,
-                    'status' => 'Produksi',
+                    'status' => 'produksi',
                     'created_at' => now(),
                     'updated_at' => now()
                 ];

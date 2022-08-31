@@ -17,7 +17,7 @@ class CreateProfilTable extends Migration
             $table->id();
             $table->string('nama_perusahaan');
             $table->string('nama_kontak');
-            $table->string('alamat2');
+            $table->string('alamat');
             $table->string('no_hp');
             $table->timestamps();
         });

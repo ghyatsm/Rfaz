@@ -29,8 +29,8 @@
     </div>
 
     <div class="form-group">
-        <label>Harga Benang</label>
-        <input name="harga_benang" class="form-control" placeholder="Harga Benang">
+        <label>Harga Jasa/Kg</label>
+        <input name="harga_benang" class="form-control" placeholder="Harga Jasa">
         <div class="text-danger">
             @error('harga_benang')
             {{ $message }}
