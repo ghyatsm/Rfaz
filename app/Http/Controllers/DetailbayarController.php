@@ -43,7 +43,7 @@ class DetailbayarController extends Controller
         $data = [
             'pesanan' => $pesanan_id,
         ];
-        return view('v_adddetailbayar', $data);
+        return view('v_addDetailbayar', $data);
     }
 
     public function delete($id)
