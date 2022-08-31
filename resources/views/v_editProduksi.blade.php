@@ -83,8 +83,8 @@
                         foreach ($mesin_trx as $trx) {
                             if ($trx->mesin_id == $mesin[$idx]["mesin_id"]) {
                                 $checked = "checked";
+                                $speed = $speed + intval($mesin[$idx]["kecepatan"]);
                             };
-                            $speed = $speed + intval($mesin[$idx]["kecepatan"]);
                             $benang = $produksi->jumlah_benang;
                         }
             ?>
