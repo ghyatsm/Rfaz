@@ -8,11 +8,12 @@ use App\Models\ProfilModel;
 use App\Models\MesinModel;
 use App\Models\MesinTrxModel;
 
-
+// rename
 class MesinTrxController extends Controller
 {
     public function __construct()
     {
+
         $this->ProduksiModel = new ProduksiModel();
         $this->PesananModel = new PesananModel();
         $this->ProfilModel = new ProfilModel();
